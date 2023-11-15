@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class Jpa {
 	//Criar a fábrica
-		private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("persisteDacap1");
+		private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("ap2dac");
 		
 		public static EntityManager criarEntityManager() {
 			return emf.createEntityManager();
