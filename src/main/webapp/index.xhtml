@@ -9,8 +9,9 @@
 	
 	<h:head>
 		<title>CADASTRO</title>
+		<link rel="stylesheet" href="index.css"/>
 	</h:head>
-	<h:body>
+	<h:body id="indexBody">
 		<div style="display: flex; justify-content: center; margin-bottom: 25px">
 			<p:commandButton onclick="window.location.href = 'listagem.xhtml'" value="Go Listagem" styleClass="ui-button-warning"/>
 		</div>
@@ -18,20 +19,22 @@
 				<p:autoUpdate/>
 		</p:messages>
 		<h:form id="indexForm">
-			<div style="display: flex; justify-content: center;">
-				<p:panel id="jogoPanel" header="Jogo" style="justify-content: center; font-size:40px">
-					<p:panelGrid id="panel" columns="2">
+			<div id="panelIndex">
+				<p:panel id="jogoPanel" header="JOGO" styleClass="panelHeader">
+					<p:panelGrid id="panel" columns="4">
 						<p:outputLabel value="Time 1" id="time1Label"></p:outputLabel>
 						<p:inputText id="time1Input" value="#{jogoBean.jogo.time1}"/>
 						<p:outputLabel value="Gols time 1" id="golstime1Label"></p:outputLabel>
 						<p:inputText id="golsTime1Input" value="#{jogoBean.jogo.golsTime1}"/>
 						<p:outputLabel value="Time 2" id="time2Label"></p:outputLabel>
-						<p:inputText id="jogador2Input" value="#{jogoBean.jogo.time2}"/>
+						<p:inputText id="time2Input" value="#{jogoBean.jogo.time2}"/>
 						<p:outputLabel value="Gols time 2" id="golstime2Label"></p:outputLabel>
 						<p:inputText id="golsTime2Input" value="#{jogoBean.jogo.golsTime2}"/>
-						<p:commandButton type="submit" value="Salvar" action="#{jogoBean.salvar()}" update="jogoPanel"/>
 					</p:panelGrid>
 				</p:panel>
+			</div>
+			<div id="botaoSalvarIndex">
+				<p:commandButton type="submit" value="Salvar" action="#{jogoBean.salvar()}" update="indexForm"/>
 			</div>
 		</h:form>
 	</h:body>

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#panelIndex {
+	display: flex;
+	justify-content: center;
+}
+
+#botaoSalvarIndex {
+	display:flex; 
+	justify-content:center; 
+	align-items:center; 
+	padding-top: 10px;
+}
+
+.panelHeader {
+	text-align: center;
+	background-color: fuchsia;
+	font-weight: bold;
+}

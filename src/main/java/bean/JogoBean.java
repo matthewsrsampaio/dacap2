@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.PrimeFaces;
+
 import dao.JogoDao;
 import entidades.Jogo;
 
@@ -18,12 +20,20 @@ public class JogoBean {
 	public String salvar() throws Exception {
 		if(!jogo.getTime1().equalsIgnoreCase(jogo.getTime2())) {
 			JogoDao.salvar(jogo);
+			resetInputs();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Jogada salvo com sucesso!", ""));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogada. O valor do time 1 é igual ao do time 2.", ""));
 		}
 		return null;
 	}
+	
+	public void resetInputs() {
+		jogo.setTime1(null);
+        jogo.setTime2(null);
+        jogo.setGolsTime1(null);
+        jogo.setGolsTime2(null);
+    }
 
 	public Jogo getJogo() {
 		return jogo;
