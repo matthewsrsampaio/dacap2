@@ -30,6 +30,27 @@ public class JogoBean {
 	
 	public String salvar() throws Exception {
 		if(!jogo.getTime1().equalsIgnoreCase(jogo.getTime2())) {
+		/*	//pontuação
+			 if(jogo.getGolsTime1().equals(jogo.getGolsTime2())) {
+				jogo.setEmpates(1);
+				jogo.setVitoriasTime1(0);
+				jogo.setVitoriasTime2(0);
+				jogo.setDerrotasTime1(0);
+				jogo.setDerrotasTime2(0);
+				jogo.setPontosTime1(1);
+				jogo.setPontosTime2(1);
+				/*
+				 * Como vou fazer com os gols sofridos?
+				 * 	-Os gols sofridos podem ser feitos a partir de uma query
+				 *Como vou fazer o saldo de gols?
+					- o saldo de gols pode ser feito a partir de uma query
+				 *Como vou fazer buscar o resultado de cada time de forma separada?
+				 *	- os times precisam ser entidades diferentes, com 1 tabela para cada time.
+				*/
+				
+				
+			//} 
+		
 			JogoDao.salvar(jogo);
 			resetInputs();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Jogada salvo com sucesso!", ""));
