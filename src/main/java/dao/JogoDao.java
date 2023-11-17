@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import entidades.Jogo;
+import entidades.TimeA;
+import entidades.TimeB;
+import entidades.TimeC;
 import util.Jpa;
 
 public class JogoDao {
@@ -15,6 +18,45 @@ public class JogoDao {
 	    try {
 		    em.getTransaction().begin();
 		    em.persist(jogo);
+		    em.getTransaction().commit();
+	    } catch (Exception e) {
+		    throw e;
+	    } finally {
+		    em.close();
+	    }
+	}
+	
+	public static void salvarTimeA(TimeA a) throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+		    em.getTransaction().begin();
+		    em.persist(a);
+		    em.getTransaction().commit();
+	    } catch (Exception e) {
+		    throw e;
+	    } finally {
+		    em.close();
+	    }
+	}
+	
+	public static void salvarTimeB(TimeB b) throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+		    em.getTransaction().begin();
+		    em.persist(b);
+		    em.getTransaction().commit();
+	    } catch (Exception e) {
+		    throw e;
+	    } finally {
+		    em.close();
+	    }
+	}
+	
+	public static void salvarTimeC(TimeC c) throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+		    em.getTransaction().begin();
+		    em.persist(c);
 		    em.getTransaction().commit();
 	    } catch (Exception e) {
 		    throw e;
