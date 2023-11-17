@@ -11,6 +11,9 @@ import org.primefaces.event.RowEditEvent;
 
 import dao.JogoDao;
 import entidades.Jogo;
+import entidades.TimeA;
+import entidades.TimeB;
+import entidades.TimeC;
 
 @ManagedBean
 @ViewScoped
@@ -18,6 +21,9 @@ public class JogoBean {
 		
 	private Jogo jogo = new Jogo();
 	private List<Jogo> listaJogada;
+	private List<TimeA> listaTimeA;
+	private List<TimeB> listaTimeB;
+	private List<TimeC> listaTimeC;
 	
 	public void onRowEdit(RowEditEvent<Jogo> event) throws Exception {	
 		JogoDao.editar(event.getObject());
@@ -37,6 +43,90 @@ public class JogoBean {
 		}
 		return listaJogada = JogoDao.listar();
 	}
+	
+	public void infoTimeA() throws Exception {
+		Integer pontos = 0;
+		Integer vitorias = 0;
+		Integer derrotas = 0;
+		Integer empates =0;
+		Integer gols = 0;
+		Integer golsSofridos = 0;
+		Integer saldoGols = 0;
+		try {
+			listaTimeA = JogoDao.buscarInfoTimeA();
+			for(TimeA a :  listaTimeA) {
+				pontos += a.getPontos();
+				vitorias += a.getVitorias();
+				derrotas += a.getDerrotas();
+				empates += a.getEmpates();
+				gols += a.getGolsTime();
+				golsSofridos += a.getGolsSofridos();
+			}
+			saldoGols = gols - golsSofridos;
+	        	FacesContext
+	        	.getCurrentInstance()
+	        	.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Informação sobre o time A => ", "Pontos: "+pontos.toString() + ", Vitórias: "+vitorias.toString() + ", Derrotas: "+derrotas.toString() + ", Empates: "+empates.toString()
+	        	+ ", Gols marcados: "+gols.toString() + ", Gols sofridos: "+golsSofridos.toString() + ", Saldo de gols: " + saldoGols.toString()));
+		}catch(Exception e) {
+			throw e;
+		}
+    }
+	
+	public void infoTimeB() throws Exception {
+		Integer pontos = 0;
+		Integer vitorias = 0;
+		Integer derrotas = 0;
+		Integer empates =0;
+		Integer gols = 0;
+		Integer golsSofridos = 0;
+		Integer saldoGols = 0;
+		try {
+			listaTimeB = JogoDao.buscarInfoTimeB();
+			for(TimeB b :  listaTimeB) {
+				pontos += b.getPontos();
+				vitorias += b.getVitorias();
+				derrotas += b.getDerrotas();
+				empates += b.getEmpates();
+				gols += b.getGolsTime();
+				golsSofridos += b.getGolsSofridos();
+			}
+			saldoGols = gols - golsSofridos;
+	        	FacesContext
+	        	.getCurrentInstance()
+	        	.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Informação sobre o time B => ", "Pontos: "+pontos.toString() + ", Vitórias: "+vitorias.toString() + ", Derrotas: "+derrotas.toString() + ", Empates: "+empates.toString()
+	        	+ ", Gols marcados: "+gols.toString() + ", Gols sofridos: "+golsSofridos.toString() + ", Saldo de gols: " + saldoGols.toString()));
+		}catch(Exception e) {
+			throw e;
+		}
+    }
+	
+	public void infoTimeC() throws Exception {
+		Integer pontos = 0;
+		Integer vitorias = 0;
+		Integer derrotas = 0;
+		Integer empates =0;
+		Integer gols = 0;
+		Integer golsSofridos = 0;
+		Integer saldoGols = 0;
+		try {
+			listaTimeC = JogoDao.buscarInfoTimeC();
+			for(TimeC c :  listaTimeC) {
+				pontos += c.getPontos();
+				vitorias += c.getVitorias();
+				derrotas += c.getDerrotas();
+				empates += c.getEmpates();
+				gols += c.getGolsTime();
+				golsSofridos += c.getGolsSofridos();
+			}
+			saldoGols = gols - golsSofridos;
+	        	FacesContext
+	        	.getCurrentInstance()
+	        	.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Informação sobre o time C => ", "Pontos: "+pontos.toString() + ", Vitórias: "+vitorias.toString() + ", Derrotas: "+derrotas.toString() + ", Empates: "+empates.toString()
+	        	+ ", Gols marcados: "+gols.toString() + ", Gols sofridos: "+golsSofridos.toString() + ", Saldo de gols: " + saldoGols.toString()));
+		}catch(Exception e) {
+			throw e;
+		}
+    }
 
 	public Jogo getJogo() {
 		return jogo;

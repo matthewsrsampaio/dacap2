@@ -9,7 +9,7 @@
 
 	<h:head>
 		<title>Listagem</title>
-		<link rel="stylesheet" href="listagem.css"/>
+		<link rel="stylesheet" type="text/css" href="listagem.css"/>
 	</h:head>
 	<h:body>
 		<div id="btnGoHome">
@@ -18,6 +18,9 @@
 		<p:messages id="message" showDetail="true" closable="true">
 			<p:autoUpdate/>
 		</p:messages>
+		<p:commandButton id="btnInfoA" action="#{jogoBean.infoTimeA()}" value="Informações time A" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
+		<p:commandButton id="btnInfoB" action="#{jogoBean.infoTimeB()}" value="Informações time B" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
+		<p:commandButton id="btnInfoC" action="#{jogoBean.infoTimeC()}" value="Informações time C" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
 		<h:form id="listagemForm">
 			<p:panel id="panel" header="Listagem" styleClass="tabelaPanel">
 				<p:dataTable id="tabela" value="#{jogoBean.listaJogada}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">

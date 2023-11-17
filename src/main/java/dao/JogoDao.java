@@ -105,6 +105,45 @@ public class JogoDao {
 		}
 	}
 	
+	public static List<TimeA> buscarInfoTimeA() throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+	        Query query = em.createQuery("select t from TimeA t");
+	        List<TimeA> listaTimeA = query.getResultList();
+	        return listaTimeA;
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        em.close();
+	    }
+	}
+	
+	public static List<TimeB> buscarInfoTimeB() throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+	        Query query = em.createQuery("select t from TimeB t");
+	        List<TimeB> listaTimeB = query.getResultList();
+	        return listaTimeB;
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        em.close();
+	    }
+	}
+	
+	public static List<TimeC> buscarInfoTimeC() throws Exception {
+	    EntityManager em = Jpa.criarEntityManager();
+	    try {
+	        Query query = em.createQuery("select t from TimeC t");
+	        List<TimeC> listaTimeC = query.getResultList();
+	        return listaTimeC;
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        em.close();
+	    }
+	}
+	
 	public static Jogo buscarPorId(Integer id) throws Exception{
 		EntityManager em = Jpa.criarEntityManager();
 		try {
