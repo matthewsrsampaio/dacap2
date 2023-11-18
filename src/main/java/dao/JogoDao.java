@@ -144,6 +144,20 @@ public class JogoDao {
 	    }
 	}
 	
+	public static List<Jogo> buscarJogosTime(String time) {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			Query query = em.createNamedQuery("listarJogosTime");
+			query.setParameter("time", time);
+			List<Jogo> lista = query.getResultList();
+			return lista;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			em.close();
+		}
+	}
+	
 	public static Jogo buscarPorId(Integer id) throws Exception{
 		EntityManager em = Jpa.criarEntityManager();
 		try {

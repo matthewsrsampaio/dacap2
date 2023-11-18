@@ -9,9 +9,12 @@
 	
 	<h:head>
 		<title>CADASTRO</title>
-		<link rel="stylesheet" href="index.css"/>
+		<link rel="stylesheet" type="text/css" href="indexx.css"/>
 	</h:head>
-	<h:body id="indexBody">
+	<h:body>
+		<div id="btnGoFiltro">
+			<p:commandButton id="btnFiltro" onclick="window.location.href = 'filtro.xhtml'" value="Go Filtro"/>
+		</div>
 		<div style="display: flex; justify-content: center; margin-bottom: 25px">
 			<p:commandButton onclick="window.location.href = 'listagem.xhtml'" value="Go Listagem" styleClass="ui-button-warning"/>
 		</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>FILTRO</title>
+		<link rel="stylesheet" type="text/css" href="filtro.css"/>
+	</h:head>
+	<h:body id="filtroBody">
+		<div id="btnGoHomeDiv">
+			<p:commandButton onclick="window.location.href = 'index.xhtml'" value="Go HOME"/>
+		</div>
+		<div id="btnGoListagemDiv">
+			<p:commandButton onclick="window.location.href = 'listagem.xhtml'" value="Go Listagem" styleClass="ui-button-warning"/>
+		</div>
+		<p:messages id="messageFiltro" closable="true">
+			<p:autoUpdate/>
+		</p:messages>
+		<h:form id="formFiltro">
+			<div id="panelFiltroDiv">
+				<p:panel id="panelFiltro" header="FILTRO">
+					<p:panelGrid id="panelgridFiltro" columns="1">
+						<p:outputLabel value="Localizar Time" id="labelFiltrol"></p:outputLabel>
+						<p:inputText id="inputFiltro" value="#{jogoBean.localizarInput}"/> <!-- precisa mudar aqui -->
+					</p:panelGrid>
+				</p:panel>
+			</div>
+			<div id="btnLocalizarDiv">
+				<p:commandButton styleClass="ui-button-success" type="submit" value="Localizar" action="#{jogoBean.localizar()}" update="formFiltro"/>
+			</div>
+		</h:form>
+	</h:body>
+
+</html>

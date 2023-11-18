@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#botaoSalvarIndex {
+	display:flex; 
+	justify-content:center; 
+	align-items:center; 
+	padding-top: 10px;
+}
+
+#btnGoFiltro {
+	text-align: center;
+	display: flex; 
+	justify-content: center; 
+	margin-bottom: 25px;
+}
+
+#btnFiltro {
+	background-color: green;
+}
+
+#panelIndex {
+	display: flex;
+	justify-content: center;
+}
+
+.panelHeader {
+	text-align: center;
+	font-weight: bold;
+}

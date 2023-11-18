@@ -254,6 +254,11 @@ public class JogoBeanNoSessionAdmin {
         jogo.setGolsTime1(null);
         jogo.setGolsTime2(null);
     }
+	
+	public String localizar() {
+		
+		return "";
+	}
 
 	public Jogo getJogo() {
 		return jogo;

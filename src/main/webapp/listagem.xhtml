@@ -12,21 +12,24 @@
 		<link rel="stylesheet" type="text/css" href="listagem.css"/>
 	</h:head>
 	<h:body>
+		<div id="btnGoFiltro">
+			<p:commandButton id="btnFiltro" onclick="window.location.href = 'filtro.xhtml'" value="Go Filtro"/>
+		</div>
 		<div id="btnGoHome">
 			<p:commandButton onclick="window.location.href = 'index.xhtml'" value="Go HOME"/>
 		</div>
 		<p:messages id="message" showDetail="true" closable="true">
 			<p:autoUpdate/>
 		</p:messages>
-		<p:commandButton id="btnInfoA" action="#{jogoBean.infoTimeA()}" value="Informações time A" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
-		<p:commandButton id="btnInfoB" action="#{jogoBean.infoTimeB()}" value="Informações time B" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
-		<p:commandButton id="btnInfoC" action="#{jogoBean.infoTimeC()}" value="Informações time C" style="background-color: rgb(255, 236, 179); color: rgb(127, 96, 3); margin-left: 5px;"/>
+		<p:commandButton id="btnInfoA" action="#{jogoBean.infoTimeA()}" value="Informações time A"/>
+		<p:commandButton id="btnInfoB" action="#{jogoBean.infoTimeB()}" value="Informações time B"/>
+		<p:commandButton id="btnInfoC" action="#{jogoBean.infoTimeC()}" value="Informações time C"/>
 		<h:form id="listagemForm">
 			<p:panel id="panel" header="Listagem" styleClass="tabelaPanel">
 				<p:dataTable id="tabela" value="#{jogoBean.listaJogada}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
 					<p:ajax event="rowEdit" listener="#{jogoBean.onRowEdit}" update=":listagemForm:tabela"/>
 					<p:ajax event="rowEditCancel" listener="#{jogoBean.onRowCancel}" update=":listagemForm:tabela"/>
-					<p:column id="idid" headerText="ID" style="text-align:center;">
+					<p:column id="columnId" headerText="ID" style="text-align:center;">
 						<p:outputLabel id="idOutput" value="#{list.id}"/>
 					</p:column>
 					<p:column headerText="Time 1" style="text-align:center;">

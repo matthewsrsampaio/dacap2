@@ -2,14 +2,17 @@ package entidades;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@NamedQueries({
+	@NamedQuery(name = "listarJogosTime", query = "select j from Jogo j where j.time1 = :time or j.time2 = :time")
+})
 
 @Entity
 public class Jogo {	
@@ -27,15 +30,11 @@ public class Jogo {
 	private Integer golsTime1;
 	@Column(name = "gols_time_2")
 	private Integer golsTime2;
-//	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_time_a_fk", referencedColumnName = "idtimea")
-//    private TimeA timeAFk;
-//	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_time_b_fk", referencedColumnName = "idtimeb")
-//    private TimeA timeBFk;
-//	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_time_c_fk", referencedColumnName = "idtimec")
-//    private TimeA timeCFk;
+	
+	@Override
+	public String toString() {
+		return "<br> Jogo ->" + " Data da Partida = " + dataCadastro + ", Time 1 = " + time1 + ", Gols Time 1 = " + golsTime1 + ", Time 2 = " + time2 + ", Gols Time 2 = " + golsTime2 + ", ID = " + id;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -43,7 +42,6 @@ public class Jogo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
@@ -74,22 +72,4 @@ public class Jogo {
 	public void setGolsTime2(Integer golsTime2) {
 		this.golsTime2 = golsTime2;
 	}
-//	public TimeA getTimeAFk() {
-//		return timeAFk;
-//	}
-//	public void setTimeAFk(TimeA timeAFk) {
-//		this.timeAFk = timeAFk;
-//	}
-//	public TimeA getTimeBFk() {
-//		return timeBFk;
-//	}
-//	public void setTimeBFk(TimeA timeBFk) {
-//		this.timeBFk = timeBFk;	
-//	}
-//	public TimeA getTimeCFk() {
-//		return timeCFk;
-//	}
-//	public void setTimeCFk(TimeA timeCFk) {
-//		this.timeCFk = timeCFk;
-//	}
 }

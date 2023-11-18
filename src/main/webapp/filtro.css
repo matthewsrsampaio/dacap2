@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#btnLocalizarDiv {
+	display:flex; 
+	justify-content:center; 
+	align-items:center; 
+	padding-top: 30px;
+}
+
+#btnGoHomeDiv {
+	display: flex; 
+	justify-content: center; 
+	margin-bottom: 25px
+}
+
+#btnGoListagemDiv {
+	display: flex; 
+	justify-content: center; 
+	margin-bottom: 25px
+}
+
+#panelFiltro {
+	display: flex;
+	justify-content: center;
+}
+
+#panelFiltroDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.panelHeader {
+	text-align: center;
+	font-weight: bold;
+}

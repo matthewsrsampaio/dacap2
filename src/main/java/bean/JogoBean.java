@@ -18,7 +18,8 @@ import entidades.TimeC;
 @ManagedBean
 @ViewScoped
 public class JogoBean {
-		
+	
+	private String localizarInput;
 	private Jogo jogo = new Jogo();
 	private List<Jogo> listaJogada;
 	private List<TimeA> listaTimeA;
@@ -42,6 +43,13 @@ public class JogoBean {
 			e.printStackTrace();
 		}
 		return listaJogada = JogoDao.listar();
+	}
+	
+	public void localizar() {
+//		localizarInput está com o valor do input
+		String texto;
+		List<Jogo> listaJogos = JogoDao.buscarJogosTime(localizarInput);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Lista de jogos " + listaJogos, ""));
 	}
 	
 	public void infoTimeA() throws Exception {
@@ -127,18 +135,56 @@ public class JogoBean {
 			throw e;
 		}
     }
+	
+
+	public String getLocalizarInput() {
+		return localizarInput;
+	}
+
+	public void setLocalizarInput(String localizarInput) {
+		this.localizarInput = localizarInput;
+	}
 
 	public Jogo getJogo() {
 		return jogo;
 	}
+
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
+
 	public List<Jogo> getListaJogada() throws Exception {
 		listaJogada = (listaJogada==null) ? listaJogada=JogoDao.listar() : listaJogada;
 		return listaJogada;
 	}
+
 	public void setListaJogada(List<Jogo> listaJogada) {
 		this.listaJogada = listaJogada;
 	}
+
+	public List<TimeA> getListaTimeA() {
+		return listaTimeA;
+	}
+
+	public void setListaTimeA(List<TimeA> listaTimeA) {
+		this.listaTimeA = listaTimeA;
+	}
+
+	public List<TimeB> getListaTimeB() {
+		return listaTimeB;
+	}
+
+	public void setListaTimeB(List<TimeB> listaTimeB) {
+		this.listaTimeB = listaTimeB;
+	}
+
+	public List<TimeC> getListaTimeC() {
+		return listaTimeC;
+	}
+
+	public void setListaTimeC(List<TimeC> listaTimeC) {
+		this.listaTimeC = listaTimeC;
+	}
+
+	
 }

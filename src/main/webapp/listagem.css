@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+#btnGoHome {
+	text-align: center;
+	display: flex; 
+	justify-content: center; 
+	margin-bottom: 25px;
+}
+
+#btnGoFiltro {
+	text-align: center;
+	display: flex; 
+	justify-content: center; 
+	margin-bottom: 25px;
+}
+
+#btnFiltro {
+	background-color: green;
+}
+
 #listagemForm {
 	text-align: center;
 	padding-top: 30px;
@@ -15,4 +33,58 @@
 
 .tabelaPanel {
 	text-align: center;
+}
+
+#btnInfoA {
+	background-color: rgb(255, 236, 179);
+	color: rgb(127, 96, 3); 
+	margin-left: 5px;
+}
+
+#btnInfoB {
+	background-color: rgb(255, 236, 179);
+	color: rgb(127, 96, 3); 
+	margin-left: 5px;
+}
+
+#btnInfoC {
+	background-color: rgb(255, 236, 179);
+	color: rgb(127, 96, 3); 
+	margin-left: 5px;
+}
+
+#columnId {
+	text-align:center;
+}
+
+#labelId {
+	text-align:center;
+}
+
+#columnTime1 {
+	text-align:center;
+}
+
+#columnTime2 {
+	text-align:center;
+}
+
+#columnGolsTime1 {
+	text-align:center;
+}
+
+#columnGolsTime2 {
+	text-align:center;
+}
+
+#columnData {
+	text-align:center;	
+}
+
+#columnEditar {
+	text-align:center;
+}
+
+#columExcluir {
+	text-align:center;
 }
