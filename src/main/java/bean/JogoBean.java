@@ -35,7 +35,7 @@ public class JogoBean {
 		    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ID: " + event.getObject().getId()+"   ->   Jogadores Editados: ", String.valueOf(event.getObject().getTime1() + " e " + event.getObject().getTime2())));
 		}
 			
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"ID: " + event.getObject().getId()+"   ->   Times duplicados!", ""));
+	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"ID: " + event.getObject().getId()+"   ->   Edição não salva. Times duplicados!", ""));
     }
 	
     public void onRowCancel(RowEditEvent<Jogo> event) throws Exception {
@@ -141,9 +141,8 @@ public class JogoBean {
 	}
 	
 	public String localizar() throws Exception {
-		String letraRetorno = letra;
 		this.visivel = true;
-		return letraRetorno;
+		return letra;
 	}
 	
 	
