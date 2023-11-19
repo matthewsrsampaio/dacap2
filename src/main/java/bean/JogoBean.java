@@ -19,7 +19,10 @@ import entidades.TimeC;
 @ViewScoped
 public class JogoBean {
 	
+	private Boolean visivel;
 	private String localizarInput;
+	private String letra;
+	private List<Jogo> listaJogos;
 	private Jogo jogo = new Jogo();
 	private List<Jogo> listaJogada;
 	private List<TimeA> listaTimeA;
@@ -43,13 +46,6 @@ public class JogoBean {
 			e.printStackTrace();
 		}
 		return listaJogada = JogoDao.listar();
-	}
-	
-	public void localizar() {
-//		localizarInput está com o valor do input
-		String texto;
-		List<Jogo> listaJogos = JogoDao.buscarJogosTime(localizarInput);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Lista de jogos " + listaJogos, ""));
 	}
 	
 	public void infoTimeA() throws Exception {
@@ -136,7 +132,42 @@ public class JogoBean {
 		}
     }
 	
+	public void limpar() {
+		this.letra = null;
+	}
+	
+	public String localizar() throws Exception {
+		String letraRetorno = letra;
+		this.visivel = true;
+		return letraRetorno;
+	}
+	
+	
+	public Boolean getVisivel() {
+		return visivel;
+	}
 
+	public void setVisivel(Boolean visivel) {
+		this.visivel = visivel;
+	}
+
+	public String getLetra() {
+		return letra;
+	}
+
+	public void setLetra(String letra) {
+		this.letra = letra;
+	}
+
+	public List<Jogo> getListaJogos() throws Exception {
+		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(localizar()) : listaJogos;
+		return listaJogos;		
+	}
+
+	public void setListaJogos(List<Jogo> listaJogos) {
+		this.listaJogos = listaJogos;
+	}
+	
 	public String getLocalizarInput() {
 		return localizarInput;
 	}

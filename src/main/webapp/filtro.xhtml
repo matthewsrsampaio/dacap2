@@ -20,18 +20,46 @@
 		<p:messages id="messageFiltro" closable="true">
 			<p:autoUpdate/>
 		</p:messages>
+		<!-- Form do localizar -->
 		<h:form id="formFiltro">
 			<div id="panelFiltroDiv">
 				<p:panel id="panelFiltro" header="FILTRO">
 					<p:panelGrid id="panelgridFiltro" columns="1">
-						<p:outputLabel value="Localizar Time" id="labelFiltrol"></p:outputLabel>
-						<p:inputText id="inputFiltro" value="#{jogoBean.localizarInput}"/> <!-- precisa mudar aqui -->
+						<p:outputLabel value="Localizar Time" id="labelFiltrol"/>
+						<p:inputText id="inputFiltro" value="#{jogoBean.letra}"/>
 					</p:panelGrid>
 				</p:panel>
 			</div>
 			<div id="btnLocalizarDiv">
-				<p:commandButton styleClass="ui-button-success" type="submit" value="Localizar" action="#{jogoBean.localizar()}" update="formFiltro"/>
+				<p:commandButton styleClass="ui-button-success" type="submit" value="Localizar" action="#{jogoBean.localizar()}" update="filtroForm" />
+				<p:commandButton id="btnLimpar" styleClass="ui-button-danger" type="submit" value="Limpar tabela" action="#{jogoBean.limpar()}" oncomplete="location.reload()" style="margin-left: 10px;"/>
 			</div>
+			<!-- Tabela de retorno -->
+		</h:form>
+		<h:form id="filtroForm">
+			<p:panel id="panelFiltro" header="Listagem" styleClass="tabelaPanel">
+				<p:dataTable id="tabelaFiltro" value="#{jogoBean.listaJogos}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true" rendered="#{jogoBean.visivel}">
+					
+					<p:column id="columnId" headerText="ID" style="text-align:center;">
+						<p:outputLabel value="#{list.id}"/>
+					</p:column>
+					<p:column headerText="Time 1" style="text-align:center;">
+                        <h:outputText value="#{list.time1}"/>
+		            </p:column>		
+		            <p:column headerText="Time 2" style="text-align:center;">
+	                    <h:outputText value="#{list.time2}"/>
+		            </p:column>
+					<p:column headerText="Gols time 1" style="text-align:center;">
+						<p:outputLabel value="#{list.golsTime1}"/>
+					</p:column>
+					<p:column headerText="Gols time 2" style="text-align:center;">
+						<p:outputLabel value="#{list.golsTime2}"/>
+					</p:column>
+					<p:column headerText="Data" style="text-align:center;">
+						<p:outputLabel value="#{list.dataCadastro}"/>
+					</p:column>>				
+				</p:dataTable>
+			</p:panel>
 		</h:form>
 	</h:body>
 

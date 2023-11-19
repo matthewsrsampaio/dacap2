@@ -33,7 +33,7 @@ public class Jogo {
 	
 	@Override
 	public String toString() {
-		return "<br> Jogo ->" + " Data da Partida = " + dataCadastro + ", Time 1 = " + time1 + ", Gols Time 1 = " + golsTime1 + ", Time 2 = " + time2 + ", Gols Time 2 = " + golsTime2 + ", ID = " + id;
+		return "Jogo ->" + " Data da Partida = " + dataCadastro + ", Time 1 = " + time1 + ", Gols Time 1 = " + golsTime1 + ", Time 2 = " + time2 + ", Gols Time 2 = " + golsTime2 + ", ID = " + id;
 	}
 	
 	public Integer getId() {

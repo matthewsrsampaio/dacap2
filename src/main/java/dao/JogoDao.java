@@ -105,6 +105,20 @@ public class JogoDao {
 		}
 	}
 	
+	public static List<Jogo> buscarJogosTime(String time) throws Exception{
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			Query query = em.createNamedQuery("listarJogosTime");
+			query.setParameter("time", time);
+			List<Jogo> lista = query.getResultList();
+			return lista;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			em.close();
+		}
+	}
+	
 	public static List<TimeA> buscarInfoTimeA() throws Exception {
 	    EntityManager em = Jpa.criarEntityManager();
 	    try {
@@ -142,20 +156,6 @@ public class JogoDao {
 	    } finally {
 	        em.close();
 	    }
-	}
-	
-	public static List<Jogo> buscarJogosTime(String time) {
-		EntityManager em = Jpa.criarEntityManager();
-		try {
-			Query query = em.createNamedQuery("listarJogosTime");
-			query.setParameter("time", time);
-			List<Jogo> lista = query.getResultList();
-			return lista;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			em.close();
-		}
 	}
 	
 	public static Jogo buscarPorId(Integer id) throws Exception{
