@@ -30,8 +30,12 @@ public class JogoBean {
 	private List<TimeC> listaTimeC;
 	
 	public void onRowEdit(RowEditEvent<Jogo> event) throws Exception {	
-		JogoDao.editar(event.getObject());
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ID: " + event.getObject().getId()+"   ->   Jogadores Editados: ", String.valueOf(event.getObject().getTime1() + " e " + event.getObject().getTime2())));
+		if(!(event.getObject().getTime1().equals(event.getObject().getTime2()))) {
+			JogoDao.editar(event.getObject());
+		    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ID: " + event.getObject().getId()+"   ->   Jogadores Editados: ", String.valueOf(event.getObject().getTime1() + " e " + event.getObject().getTime2())));
+		}
+			
+	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"ID: " + event.getObject().getId()+"   ->   Times duplicados!", ""));
     }
 	
     public void onRowCancel(RowEditEvent<Jogo> event) throws Exception {

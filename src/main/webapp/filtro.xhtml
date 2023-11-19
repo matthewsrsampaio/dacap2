@@ -37,7 +37,7 @@
 			<!-- Tabela de retorno -->
 		</h:form>
 		<h:form id="filtroForm">
-			<p:panel id="panelFiltroTabela" header="Listagem" style="text-align: center; justify-content: center; margin-top: 30px">
+			<p:panel id="panelFiltroTabela" header="Listagem" style="text-align: center; justify-content: center; margin-top: 30px" rendered="#{jogoBean.visivel}">
 				<p:dataTable id="tabelaFiltro" value="#{jogoBean.listaJogos}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true" rendered="#{jogoBean.visivel}">
 					
 					<p:column id="columnId" headerText="ID" style="text-align:center;">
