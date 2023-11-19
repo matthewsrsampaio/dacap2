@@ -23,9 +23,9 @@
 		<!-- Form do localizar -->
 		<h:form id="formFiltro">
 			<div id="panelFiltroDiv">
-				<p:panel id="panelFiltro" header="FILTRO">
+				<p:panel id="panelFiltro" header="FILTRO" style="text-align: center; justify-content: center;">
 					<p:panelGrid id="panelgridFiltro" columns="1">
-						<p:outputLabel value="Localizar Time" id="labelFiltrol"/>
+						<p:outputLabel value="Localizar Time" style="display: flex; justify-content: center;"/>
 						<p:inputText id="inputFiltro" value="#{jogoBean.letra}"/>
 					</p:panelGrid>
 				</p:panel>
@@ -37,7 +37,7 @@
 			<!-- Tabela de retorno -->
 		</h:form>
 		<h:form id="filtroForm">
-			<p:panel id="panelFiltro" header="Listagem" styleClass="tabelaPanel">
+			<p:panel id="panelFiltroTabela" header="Listagem" style="text-align: center; justify-content: center; margin-top: 30px">
 				<p:dataTable id="tabelaFiltro" value="#{jogoBean.listaJogos}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true" rendered="#{jogoBean.visivel}">
 					
 					<p:column id="columnId" headerText="ID" style="text-align:center;">

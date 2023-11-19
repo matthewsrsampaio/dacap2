@@ -19,9 +19,10 @@
 	margin-bottom: 25px
 }
 
-#panelFiltro {
+.panelFiltro {
 	display: flex;
 	justify-content: center;
+	text-align: center;
 }
 
 #panelFiltroDiv {
@@ -29,11 +30,7 @@
 	justify-content: center;
 }
 
-.panelHeader {
-	text-align: center;
-	font-weight: bold;
-}
-
-#btnLimpar {
-	margin-left: 10px;
+#panelFiltroTabela {
+	display: flex;
+	justify-content: center;
 }

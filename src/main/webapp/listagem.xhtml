@@ -25,7 +25,7 @@
 		<p:commandButton id="btnInfoB" action="#{jogoBean.infoTimeB()}" value="Informações time B"/>
 		<p:commandButton id="btnInfoC" action="#{jogoBean.infoTimeC()}" value="Informações time C"/>
 		<h:form id="listagemForm">
-			<p:panel id="panel" header="Listagem" styleClass="tabelaPanel">
+			<p:panel id="panel" header="Listagem">
 				<p:dataTable id="tabela" value="#{jogoBean.listaJogada}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
 					<p:ajax event="rowEdit" listener="#{jogoBean.onRowEdit}" update=":listagemForm:tabela"/>
 					<p:ajax event="rowEditCancel" listener="#{jogoBean.onRowCancel}" update=":listagemForm:tabela"/>
