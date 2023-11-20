@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import dao.JogoDao;
+import entidades.Auxiliar;
 import entidades.Jogo;
 import entidades.TimeA;
 import entidades.TimeB;
@@ -15,9 +16,10 @@ import entidades.TimeC;
 @ManagedBean
 public class JogoBeanNoSessionAdmin {
 	
+	private Auxiliar auxiliar = new Auxiliar();
 	private Boolean visivel;
 	private String localizarInput;
-	private String letra;
+//	private String letra;
 	private List<Jogo> listaJogos;
 	private Jogo jogo = new Jogo();
 	private TimeA timeA = new TimeA();
@@ -266,17 +268,28 @@ public class JogoBeanNoSessionAdmin {
         jogo.setTime2(null);
         jogo.setGolsTime1(null);
         jogo.setGolsTime2(null);
+        auxiliar.setLetra(null);
     }
 	
-	public String localizar() throws Exception {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + letra.toString().toUpperCase(), null));
+	public List<Jogo> localizar() throws Exception {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + auxiliar.getLetra().toString().toUpperCase(), null));
 		this.visivel = true;
-		return letra;
+		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(auxiliar.getLetra()) : listaJogos;
+		resetInputs();
+		return listaJogos;
 	}
 	
-	
+
+	public Auxiliar getAuxiliar() {
+		return auxiliar;
+	}
+
+	public void setAuxiliar(Auxiliar auxiliar) {
+		this.auxiliar = auxiliar;
+	}
+
 	public List<Jogo> getListaJogos() throws Exception {
-		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(localizar()) : listaJogos;
+		listaJogos = (listaJogos==null) ? localizar() : listaJogos; 
 		return listaJogos;
 	}
 
@@ -300,13 +313,13 @@ public class JogoBeanNoSessionAdmin {
 		this.localizarInput = localizarInput;
 	}
 
-	public String getLetra() {
-		return letra;
-	}
-
-	public void setLetra(String letra) {
-		this.letra = letra;
-	}
+//	public String getLetra() {
+//		return letra;
+//	}
+//
+//	public void setLetra(String letra) {
+//		this.letra = letra;
+//	}
 
 	public Jogo getJogo() {
 		return jogo;

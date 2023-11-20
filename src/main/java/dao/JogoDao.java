@@ -92,6 +92,48 @@ public class JogoDao {
 		}
 	}
 	
+	public static void excluirTimeA(TimeA timeA) throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			em.getTransaction().begin();
+			timeA = em.find(TimeA.class, timeA.getId());
+			em.remove(timeA);
+			em.getTransaction().commit();
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
+	public static void excluirTimeB(TimeB timeB) throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			em.getTransaction().begin();
+			timeB = em.find(TimeB.class, timeB.getId());
+			em.remove(timeB);
+			em.getTransaction().commit();
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
+	public static void excluirTimeC(TimeC timeC) throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			em.getTransaction().begin();
+			timeC = em.find(TimeC.class, timeC.getId());
+			em.remove(timeC);
+			em.getTransaction().commit();
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
 	public static List<Jogo> listar() throws Exception {
 		EntityManager em = Jpa.criarEntityManager();
 		try {

@@ -20,6 +20,9 @@ import entidades.TimeC;
 public class JogoBean {
 	
 	private Jogo jogo = new Jogo();
+	private TimeA timeA = new TimeA();
+	private TimeB timeB = new TimeB();
+	private TimeC timeC = new TimeC();
 	private List<Jogo> listaJogada;
 	private List<TimeA> listaTimeA;
 	private List<TimeB> listaTimeB;
@@ -133,6 +136,32 @@ public class JogoBean {
     }
 
 	
+	
+	
+	public TimeA getTimeA() {
+		return timeA;
+	}
+
+	public void setTimeA(TimeA timeA) {
+		this.timeA = timeA;
+	}
+
+	public TimeB getTimeB() {
+		return timeB;
+	}
+
+	public void setTimeB(TimeB timeB) {
+		this.timeB = timeB;
+	}
+
+	public TimeC getTimeC() {
+		return timeC;
+	}
+
+	public void setTimeC(TimeC timeC) {
+		this.timeC = timeC;
+	}
+
 	public Jogo getJogo() {
 		return jogo;
 	}
