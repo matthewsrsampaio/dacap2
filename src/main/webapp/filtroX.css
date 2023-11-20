@@ -1,18 +1,24 @@
 @charset "UTF-8";
 
 .ui-messages-warn {
-	background-color: rgb(104, 159, 56) !important;
-	border-color: rgb(194, 224, 168) !important;
-	color: white !important;
+	background-color: rgb(194, 224, 200) !important;
+	border-color: rgb(104, 159, 56) !important;
+	color: rgb(104, 159, 56) !important;
 }
 
 .ui-messages-close {
-	background-color: rgb(104, 159, 56) !important;
-	color: white !important;
+	background-color: rgb(194, 224, 200) !important;
+	color: rgb(104, 159, 56) !important;
 }
 
 .ui-messages-warn-icon {
-	color: white !important;
+	color: rgb(104, 159, 56) !important;
+}
+
+.btnLocalizar {
+	background-color: rgb(194, 224, 200) !important;
+	border-color: rgb(104, 159, 56) !important;
+	color: rgb(104, 159, 56) !important;
 }
 
 #btnLocalizarDiv {
