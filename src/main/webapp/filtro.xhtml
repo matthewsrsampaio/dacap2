@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<title>FILTRO</title>
-		<link rel="stylesheet" type="text/css" href="filtro.css"/>
+		<link rel="stylesheet" type="text/css" href="filtroX.css"/>
 	</h:head>
 	<h:body id="filtroBody">
 		<div id="btnGoHomeDiv">
@@ -17,29 +17,25 @@
 		<div id="btnGoListagemDiv">
 			<p:commandButton onclick="window.location.href = 'listagem.xhtml'" value="Go Listagem" styleClass="ui-button-warning"/>
 		</div>
-		<p:messages id="messageFiltro" closable="true">
-			<p:autoUpdate/>
-		</p:messages>
 		<!-- Form do localizar -->
 		<h:form id="formFiltro">
 			<div id="panelFiltroDiv">
 				<p:panel id="panelFiltro" header="FILTRO" style="text-align: center; justify-content: center;">
 					<p:panelGrid id="panelgridFiltro" columns="1">
 						<p:outputLabel value="Localizar Time" style="display: flex; justify-content: center;"/>
-						<p:inputText id="inputFiltro" value="#{jogoBean.letra}"/>
+						<p:inputText id="inputFiltro" value="#{jogoBeanNoSessionAdmin.letra}"/>
 					</p:panelGrid>
 				</p:panel>
 			</div>
 			<div id="btnLocalizarDiv">
-				<p:commandButton styleClass="ui-button-success" type="submit" value="Localizar" action="#{jogoBean.localizar()}" update="filtroForm" />
-				<p:commandButton id="btnLimpar" styleClass="ui-button-danger" type="submit" value="Limpar tabela" action="#{jogoBean.limpar()}" oncomplete="location.reload()" style="margin-left: 10px;"/>
+				<p:commandButton styleClass="ui-button-success" type="submit" value="Localizar" action="#{jogoBeanNoSessionAdmin.localizar()}" update="formFiltro"/>
 			</div>
-			<!-- Tabela de retorno -->
-		</h:form>
-		<h:form id="filtroForm">
-			<p:panel id="panelFiltroTabela" header="Listagem" style="text-align: center; justify-content: center; margin-top: 30px" rendered="#{jogoBean.visivel}">
-				<p:dataTable id="tabelaFiltro" value="#{jogoBean.listaJogos}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true" rendered="#{jogoBean.visivel}">
-					
+			
+			<p:panel id="panelFiltroTabela" header="Listagem" style="text-align: center; justify-content: center; margin-top: 30px" rendered="#{jogoBeanNoSessionAdmin.visivel}">
+				<p:messages id="messageFiltro" closable="true">
+					<p:autoUpdate/>
+				</p:messages>
+				<p:dataTable id="tabelaFiltro" value="#{jogoBeanNoSessionAdmin.listaJogos}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true" rendered="#{jogoBeanNoSessionAdmin.visivel}">
 					<p:column id="columnId" headerText="ID" style="text-align:center;">
 						<p:outputLabel value="#{list.id}"/>
 					</p:column>
@@ -62,5 +58,4 @@
 			</p:panel>
 		</h:form>
 	</h:body>
-
 </html>
