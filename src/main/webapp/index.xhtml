@@ -11,19 +11,19 @@
 		<title>CADASTRO</title>
 		<link rel="stylesheet" type="text/css" href="indexx.css"/>
 	</h:head>
-	<h:body>
+	<h:body style="background-color: black;">
 		<div id="btnGoFiltro">
 			<p:commandButton id="btnFiltro" onclick="window.location.href = 'filtro.xhtml'" value="Go Filtro"/>
 		</div>
 		<div style="display: flex; justify-content: center; margin-bottom: 25px">
 			<p:commandButton onclick="window.location.href = 'listagem.xhtml'" value="Go Listagem" styleClass="ui-button-warning"/>
 		</div>
-		<p:messages id="messageIndex" closable="true">
-				<p:autoUpdate/>
-		</p:messages>
 		<h:form id="indexForm">
 			<div id="panelIndex">
 				<p:panel id="jogoPanel" header="JOGO" styleClass="panelHeader">
+					<p:messages id="messageIndex" closable="true">
+						<p:autoUpdate/>
+					</p:messages>
 					<p:panelGrid id="panel" columns="4">
 						<p:outputLabel value="Time 1" id="time1Label"></p:outputLabel>
 						<p:inputText id="time1Input" value="#{jogoBeanNoSessionAdmin.jogo.time1}"/>
@@ -34,6 +34,8 @@
 						<p:outputLabel value="Gols time 2" id="golstime2Label"></p:outputLabel>
 						<p:inputText id="golsTime2Input" value="#{jogoBeanNoSessionAdmin.jogo.golsTime2}"/>
 					</p:panelGrid>
+					<h1>Data da partida</h1>
+					<p:datePicker id="inline" value="#{jogoBeanNoSessionAdmin.jogo.dataPartida}" inline="true" showTime="true" timeInput="true"/>
 				</p:panel>
 			</div>
 			<div id="botaoSalvarIndex">

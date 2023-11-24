@@ -11,7 +11,7 @@
 		<title>Listagem</title>
 		<link rel="stylesheet" type="text/css" href="listagem.css"/>
 	</h:head>
-	<h:body>
+	<h:body style="background-color: black;">
 		<div id="btnGoHome">
 			<p:commandButton onclick="window.location.href = 'index.xhtml'" value="Go HOME"/>
 		</div>
@@ -21,9 +21,6 @@
 		<p:messages id="message" showDetail="true" closable="true">
 			<p:autoUpdate/>
 		</p:messages>
-		<p:commandButton id="btnInfoA" action="#{jogoBean.infoTimeA()}" value="Informações time A"/>
-		<p:commandButton id="btnInfoB" action="#{jogoBean.infoTimeB()}" value="Informações time B"/>
-		<p:commandButton id="btnInfoC" action="#{jogoBean.infoTimeC()}" value="Informações time C"/>
 		<h:form id="listagemForm">
 			<p:panel id="panel" header="Listagem">
 				<p:dataTable id="tabela" value="#{jogoBean.listaJogada}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
@@ -33,30 +30,30 @@
 						<p:outputLabel id="idOutput" value="#{list.id}"/>
 					</p:column>
 					<p:column headerText="Time 1" style="text-align:center;">
-		                <p:cellEditor>
-		                    <f:facet name="output">
-		                        <h:outputText value="#{list.time1}"/>
-		                    </f:facet>
-		                    <f:facet name="input">
-		                        <p:inputText id="modelInput" value="#{list.time1}"/>
-		                    </f:facet>
-		                </p:cellEditor>
-		            </p:column>		
+                        <h:outputText value="#{list.time1}"/>
+                   	</p:column>
 		            <p:column headerText="Time 2" style="text-align:center;">
-		                <p:cellEditor>
-		                    <f:facet name="output">
-		                        <h:outputText value="#{list.time2}"/>
-		                    </f:facet>
-		                    <f:facet name="input">
-		                        <p:inputText value="#{list.time2}"/>
-		                    </f:facet>
-		                </p:cellEditor>
+                    	<h:outputText value="#{list.time2}"/>
 		            </p:column>
 					<p:column headerText="Gols time 1" style="text-align:center;">
-						<p:outputLabel value="#{list.golsTime1}"/>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{list.golsTime1}"/>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{list.golsTime1}"/>
+							</f:facet>					
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Gols time 2" style="text-align:center;">
-						<p:outputLabel value="#{list.golsTime2}"/>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{list.golsTime2}"/>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{list.golsTime2}"/>
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Data" style="text-align:center;">
 						<p:outputLabel value="#{list.dataCadastro}"/>

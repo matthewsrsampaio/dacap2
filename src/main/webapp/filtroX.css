@@ -55,3 +55,7 @@
 	display: flex;
 	justify-content: center;
 }
+
+#filtroBody {
+	background-color: black;
+}
