@@ -26,9 +26,12 @@
 				<p:dataTable id="tabela" value="#{jogoBean.listaJogada}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
 					<p:ajax event="rowEdit" listener="#{jogoBean.onRowEdit}" update=":listagemForm:tabela"/>
 					<p:ajax event="rowEditCancel" listener="#{jogoBean.onRowCancel}" update=":listagemForm:tabela"/>
-					<p:column id="columnId" headerText="ID" style="text-align:center;">
-						<p:outputLabel id="idOutput" value="#{list.id}"/>
-					</p:column>
+					<p:column headerText="ID" style="text-align:center;">
+						<p:outputLabel value="#{list.id}"/>
+					</p:column>	
+					<p:column headerText="Data do partida" style="text-align:center;">
+						<p:outputLabel value="#{list.dataPartida}"/>
+					</p:column>	
 					<p:column headerText="Time 1" style="text-align:center;">
                         <h:outputText value="#{list.time1}"/>
                    	</p:column>
@@ -55,7 +58,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="Data" style="text-align:center;">
+					<p:column headerText="Data do cadastro" style="text-align:center;">
 						<p:outputLabel value="#{list.dataCadastro}"/>
 					</p:column>		
 					<p:column headerText="Editar" style="text-align:center;">
@@ -66,6 +69,22 @@
 						<f:setPropertyActionListener value="#{list}" target="#{jogoBean.jogo}"/>
 					</p:commandButton>
 					</p:column>				
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+		
+		<h:form id="formResult">
+			<div id="btnResultado" style="text-align: center; margin-top: 30px">
+				<p:commandButton type="submit" value="Resultado" action="#{jogoBeanNoSessionAdmin.exibirListaTimes()}" update="formResult"/>
+			</div>
+			<p:panel id="panelFiltroTabela" header="Resultado" style="text-align: center; justify-content: center; margin-top: 30px" rendered="#{jogoBeanNoSessionAdmin.visivel}">
+				<p:dataTable id="tabelaFiltro" value="#{jogoBeanNoSessionAdmin.listaStatus}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
+					<p:column id="columnId" headerText="ID" style="text-align:center;">
+						<p:outputLabel value="id"/>
+					</p:column>
+					<p:column headerText="Time 1" style="text-align:center;">
+                        <h:outputText value="Time 1"/>
+		            </p:column>				
 				</p:dataTable>
 			</p:panel>
 		</h:form>

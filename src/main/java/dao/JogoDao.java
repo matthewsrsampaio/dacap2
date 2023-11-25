@@ -6,9 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import entidades.Jogo;
-import entidades.TimeA;
-import entidades.TimeB;
-import entidades.TimeC;
 import util.Jpa;
 
 public class JogoDao {
@@ -18,45 +15,6 @@ public class JogoDao {
 	    try {
 		    em.getTransaction().begin();
 		    em.persist(jogo);
-		    em.getTransaction().commit();
-	    } catch (Exception e) {
-		    throw e;
-	    } finally {
-		    em.close();
-	    }
-	}
-	
-	public static void salvarTimeA(TimeA a) throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-		    em.getTransaction().begin();
-		    em.persist(a);
-		    em.getTransaction().commit();
-	    } catch (Exception e) {
-		    throw e;
-	    } finally {
-		    em.close();
-	    }
-	}
-	
-	public static void salvarTimeB(TimeB b) throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-		    em.getTransaction().begin();
-		    em.persist(b);
-		    em.getTransaction().commit();
-	    } catch (Exception e) {
-		    throw e;
-	    } finally {
-		    em.close();
-	    }
-	}
-	
-	public static void salvarTimeC(TimeC c) throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-		    em.getTransaction().begin();
-		    em.persist(c);
 		    em.getTransaction().commit();
 	    } catch (Exception e) {
 		    throw e;
@@ -92,52 +50,49 @@ public class JogoDao {
 		}
 	}
 	
-	public static void excluirTimeA(TimeA timeA) throws Exception {
-		EntityManager em = Jpa.criarEntityManager();
-		try {
-			em.getTransaction().begin();
-			timeA = em.find(TimeA.class, timeA.getId());
-			em.remove(timeA);
-			em.getTransaction().commit();
-		}catch(Exception e) {
-			throw e;
-		}finally {
-			em.close();
-		}
-	}
-	
-	public static void excluirTimeB(TimeB timeB) throws Exception {
-		EntityManager em = Jpa.criarEntityManager();
-		try {
-			em.getTransaction().begin();
-			timeB = em.find(TimeB.class, timeB.getId());
-			em.remove(timeB);
-			em.getTransaction().commit();
-		}catch(Exception e) {
-			throw e;
-		}finally {
-			em.close();
-		}
-	}
-	
-	public static void excluirTimeC(TimeC timeC) throws Exception {
-		EntityManager em = Jpa.criarEntityManager();
-		try {
-			em.getTransaction().begin();
-			timeC = em.find(TimeC.class, timeC.getId());
-			em.remove(timeC);
-			em.getTransaction().commit();
-		}catch(Exception e) {
-			throw e;
-		}finally {
-			em.close();
-		}
-	}
-	
 	public static List<Jogo> listar() throws Exception {
 		EntityManager em = Jpa.criarEntityManager();
 		try {
 			Query query = em.createQuery("select j from Jogo j");
+			List<Jogo> lista = query.getResultList();
+			return lista;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
+	public static List<Jogo> listarTimeA() throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			Query query = em.createQuery("ETA");
+			List<Jogo> lista = query.getResultList();
+			return lista;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
+	public static List<Jogo> listarTimeB() throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			Query query = em.createQuery("ETB");
+			List<Jogo> lista = query.getResultList();
+			return lista;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			em.close();
+		}
+	}
+	
+	public static List<Jogo> listarTimeC() throws Exception {
+		EntityManager em = Jpa.criarEntityManager();
+		try {
+			Query query = em.createQuery("ETC");
 			List<Jogo> lista = query.getResultList();
 			return lista;
 		}catch(Exception e) {
@@ -161,44 +116,31 @@ public class JogoDao {
 		}
 	}
 	
-	public static List<TimeA> buscarInfoTimeA() throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-	        Query query = em.createQuery("select t from TimeA t");
-	        List<TimeA> listaTimeA = query.getResultList();
-	        return listaTimeA;
-	    } catch (Exception e) {
-	        throw e;
-	    } finally {
-	        em.close();
-	    }
-	}
+//	public static List<Jogo> listaEstatistica() throws Exception{
+//		EntityManager em = Jpa.criarEntityManager();
+//		try {
+//			Query query = em.createQuery("select time, sum(pontuacao) as pontuacao, sum(case when resultado = 'Vitoria' then 1 else 0 end) as numero_vitorias,  sum(case when resultado = 'Derrota' then 1 else 0 end) as numero_derrotas, sum(case when resultado = 'Empate' then 1 else 0 end) as numero_empates, sum(gols_marcados) as gols_marcados, sum(gols_sofridos) as gols_sofridos, sum(gols_marcados - gols_sofridos) as saldo_gols from ( select j.time1 as time, j.golsTime1 as gols_marcados, j.golsTime2 as gols_sofridos, case when j.time1 = 'a' and j.golsTime1 > j.golsTime2 then 3 when j.time1 = 'a' and j.golsTime1 < j.golsTime2 then 0 when j.time1 = 'a' and j.golsTime1 = j.golsTime2 then 1 when j.time1 = 'b' and j.golsTime1 > j.golsTime2 then 3 when j.time1 = 'b' and j.golsTime1 < j.golsTime2 then 0 when j.time1 = 'b' and j.golsTime1 = j.golsTime2 then 1 when j.time1 = 'c' and j.golsTime1 > j.golsTime2 then 3 when j.time1 = 'c' and j.golsTime1 < j.golsTime2 then 0 when j.time1 = 'c' and j.golsTime1 = j.golsTime2 then 1 end as pontuacao, case when j.time1 = 'a' and j.golsTime1 > j.golsTime2 then 'Vitoria' when j.time1 = 'a' and j.golsTime1 < j.golsTime2 then 'Derrota' when j.time1 = 'a' and j.golsTime1 = j.golsTime2 then 'Empate' when j.time1 = 'b' and j.golsTime1 > j.golsTime2 then 'Vitoria' when j.time1 = 'b' and j.golsTime1 < j.golsTime2 then 'Derrota' when j.time1 = 'b' and j.golsTime1 = j.golsTime2 then 'Empate' when j.time1 = 'c' and j.golsTime1 > j.golsTime2 then 'Vitoria' when j.time1 = 'c' and j.golsTime1 < j.golsTime2 then 'Derrota' when j.time1 = 'c' and j.golsTime1 = j.golsTime2 then 'Empate' end as resultado from Jogo j union all select j.time2 as time, j.golsTime2 as gols_marcados, j.golsTime1 as gols_sofridos, case when j.time2 = 'a' and j.golsTime2 > j.golsTime1 then 3 when j.time2 = 'a' and j.golsTime2 < j.golsTime1 then 0 when j.time2 = 'a' and j.golsTime2 = j.golsTime1 then 1 when j.time2 = 'b' and j.golsTime2 > j.golsTime1 then 3 when j.time2 = 'b' and j.golsTime2 < j.golsTime1 then 0 when j.time2 = 'b' and j.golsTime2 = j.golsTime1 then 1 when j.time2 = 'c' and j.golsTime2 > j.golsTime1 then 3 when j.time2 = 'c' and j.golsTime2 < j.golsTime1 then 0 when j.time2 = 'c' and j.golsTime2 = j.golsTime1 then 1 end as pontuacao, case when j.time2 = 'a' and j.golsTime2 > j.golsTime1 then 'Vitoria' when j.time2 = 'a' and j.golsTime2 < j.golsTime1 then 'Derrota' when j.time2 = 'a' and j.golsTime2 = j.golsTime1 then 'Empate' when j.time2 = 'b' and j.golsTime2 > j.golsTime1 then 'Vitoria' when j.time2 = 'b' and j.golsTime2 < j.golsTime1 then 'Derrota' when j.time2 = 'b' and j.golsTime2 = j.golsTime1 then 'Empate' when j.time2 = 'c' and j.golsTime2 > j.golsTime1 then 'Vitoria' when j.time2 = 'c' and j.golsTime2 < j.golsTime1 then 'Derrota' when j.time2 = 'c' and j.golsTime2 = j.golsTime1 then 'Empate' end as resultado from Jogo j ) as subquery group by time");
+//			List<Jogo> lista = query.getResultList();
+//			return lista;
+//		} catch (Exception e) {
+//			throw e;
+//		} finally {
+//			em.close();
+//		}
+//	}
 	
-	public static List<TimeB> buscarInfoTimeB() throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-	        Query query = em.createQuery("select t from TimeB t");
-	        List<TimeB> listaTimeB = query.getResultList();
-	        return listaTimeB;
-	    } catch (Exception e) {
-	        throw e;
-	    } finally {
-	        em.close();
-	    }
-	}
-	
-	public static List<TimeC> buscarInfoTimeC() throws Exception {
-	    EntityManager em = Jpa.criarEntityManager();
-	    try {
-	        Query query = em.createQuery("select t from TimeC t");
-	        List<TimeC> listaTimeC = query.getResultList();
-	        return listaTimeC;
-	    } catch (Exception e) {
-	        throw e;
-	    } finally {
-	        em.close();
-	    }
-	}
+//	public static List<Jogo> listaEstatistica() throws Exception{
+//		EntityManager em = Jpa.criarEntityManager();
+//		try {
+//			Query query = em.createNamedQuery("ET", String.class);
+//			List<Jogo> lista = query.getResultList();
+//			return lista;
+//		} catch (Exception e) {
+//			throw e;
+//		} finally {
+//			em.close();
+//		}
+//	}
 	
 	public static Jogo buscarPorId(Integer id) throws Exception{
 		EntityManager em = Jpa.criarEntityManager();
