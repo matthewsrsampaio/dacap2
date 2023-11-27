@@ -18,6 +18,59 @@
 		<div id="btnGoFiltro">
 			<p:commandButton id="btnFiltro" onclick="window.location.href = 'filtro.xhtml'" value="Go Filtro"/>
 		</div>
+		<h:form id="resultadoForm">
+			<div style="margin-bottom: 30px;">
+				<p:commandButton type="submit" value="Resultados" action="#{jogoBean.resumo()}" rendered="#{not jogoBean.visivel}" update="resultadoForm" style="background-color: orange;"/>
+				<p:commandButton type="submit" value="X" action="#{jogoBean.fechar()}" rendered="#{jogoBean.visivel}" update="resultadoForm" style="background-color: red;"/>
+			</div>
+			<p:panel header="Tabela" rendered="#{jogoBean.visivel}" style="text-align: center;">
+				<p:dataTable id="tabelaResultado" value="#{jogoBean.listaResumoFinal}" var="res" rendered="#{jogoBean.visivel}">
+					<p:column headerText="Time" style="text-align:center;">
+		                <h:outputText value="#{res.timeDaVez}"/>
+		            </p:column>	
+					<p:column headerText="Pontuação" style="text-align:center;">
+		                <h:outputText value="#{res.pontuacao}"/>
+		            </p:column>		
+		           <p:column headerText="Vitórias" style="text-align:center;">
+	               		<h:outputText value="#{res.vitorias}"/>
+		            </p:column>
+					<p:column headerText="Derrotas" style="text-align:center;">
+						<p:outputLabel value="#{res.derrotas}"/>
+					</p:column>
+					<p:column headerText="Empates" style="text-align:center;">
+						<p:outputLabel value="#{res.empates}"/>
+					</p:column>
+					<p:column headerText="Gols marcados" style="text-align:center;">
+						<p:outputLabel value="#{res.gols_marcados}"/>
+					</p:column>
+					<p:column headerText="Gols sofridos" style="text-align:center;">
+						<p:outputLabel value="#{res.gols_sofridos}"/>
+					</p:column>
+					<p:column headerText="Saldo de gols" style="text-align:center;">
+						<p:outputLabel value="#{res.saldo_gols}"/>
+					</p:column>				
+				</p:dataTable>
+			</p:panel>
+			<p:panel header="Partidas" rendered="#{jogoBean.visivel}" style="text-align: center;">
+				<p:dataTable id="tabelaPartidas" value="#{jogoBean.listaJogada}" var="pt" rendered="#{jogoBean.visivel}">
+					<p:column headerText="CASA" style="text-align:center;">
+		                <h:outputText value="#{pt.time1}"/>
+		            </p:column>	
+					<p:column headerText="GOLS" style="text-align:center;">
+		                <h:outputText value="#{pt.golsTime1}"/>
+		            </p:column>		
+		           <p:column headerText="" style="text-align:center;">
+	               		<h:outputText value="x"/>
+		            </p:column>
+					<p:column headerText="GOLS" style="text-align:center;">
+		                <h:outputText value="#{pt.golsTime2}"/>
+		            </p:column>	
+					<p:column headerText="VISITANTE" style="text-align:center;">
+		                <h:outputText value="#{pt.time2}"/>
+		            </p:column>			
+				</p:dataTable>
+			</p:panel>
+		</h:form>
 		<p:messages id="message" showDetail="true" closable="true">
 			<p:autoUpdate/>
 		</p:messages>
@@ -69,22 +122,6 @@
 						<f:setPropertyActionListener value="#{list}" target="#{jogoBean.jogo}"/>
 					</p:commandButton>
 					</p:column>				
-				</p:dataTable>
-			</p:panel>
-		</h:form>
-		
-		<h:form id="formResult">
-			<div id="btnResultado" style="text-align: center; margin-top: 30px">
-				<p:commandButton type="submit" value="Resultado" action="#{jogoBeanNoSessionAdmin.exibirListaTimes()}" update="formResult"/>
-			</div>
-			<p:panel id="panelFiltroTabela" header="Resultado" style="text-align: center; justify-content: center; margin-top: 30px" rendered="#{jogoBeanNoSessionAdmin.visivel}">
-				<p:dataTable id="tabelaFiltro" value="#{jogoBeanNoSessionAdmin.listaStatus}" var="list" rowKey="#{list.id}" selectionMode="single" editable="true">
-					<p:column id="columnId" headerText="ID" style="text-align:center;">
-						<p:outputLabel value="id"/>
-					</p:column>
-					<p:column headerText="Time 1" style="text-align:center;">
-                        <h:outputText value="Time 1"/>
-		            </p:column>				
 				</p:dataTable>
 			</p:panel>
 		</h:form>
