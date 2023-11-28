@@ -1,9 +1,6 @@
 package bean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,14 +16,13 @@ public class JogoBeanNoSessionAdmin {
 	private Auxiliar auxiliar = new Auxiliar();
 	private Boolean visivel = false;
 	private List<Jogo> listaJogos;
-	private List<Jogo> listaTimeA = new ArrayList<>();;
-	private List<Jogo> listaTimeB = new ArrayList<>();;
-	private List<Jogo> listaTimeC = new ArrayList<>();;
 	private Jogo jogo = new Jogo();
 	
 	public String salvar() throws Exception {		
 		//Se não for o mesmo time
 		if(jogo.getTime1().equals(jogo.getTime1().toLowerCase()) && jogo.getTime2().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
+			jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
+        	jogo.setGolsTime2((jogo.getGolsTime2()==null) ? 0 : jogo.getGolsTime2());
 			JogoDao.salvar(jogo);
 			resetInputs();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Jogada salvo com sucesso!", ""));
@@ -90,31 +86,4 @@ public class JogoBeanNoSessionAdmin {
 	public void setListaJogos(List<Jogo> listaJogos) {
 		this.listaJogos = listaJogos;
 	}
-
-	public List<Jogo> getListaTimeA() {
-		return listaTimeA;
-	}
-
-	public void setListaTimeA(List<Jogo> listaTimeA) {
-		this.listaTimeA = listaTimeA;
-	}
-
-	public List<Jogo> getListaTimeB() {
-		return listaTimeB;
-	}
-
-	public void setListaTimeB(List<Jogo> listaTimeB) {
-		this.listaTimeB = listaTimeB;
-	}
-
-	public List<Jogo> getListaTimeC() {
-		return listaTimeC;
-	}
-
-	public void setListaTimeC(List<Jogo> listaTimeC) {
-		this.listaTimeC = listaTimeC;
-	}
-
-	
-	
 }

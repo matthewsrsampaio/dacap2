@@ -67,10 +67,12 @@ public class JogoBean {
 	        int pontuacao = 0;
 
 	        for (Jogo jogo : listaResumo) {
-	        	if(jogo.getGolsTime1()==null || jogo.getGolsTime2()==null) {
-	        		jogo.setGolsTime1(0);
-	        		jogo.setGolsTime2(0);
-	        	}
+//	        	if(jogo.getGolsTime1()==null || jogo.getGolsTime2()==null) {
+//	        		jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
+//	        		jogo.setGolsTime2(0);
+//	        	}
+	        	jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
+	        	jogo.setGolsTime2((jogo.getGolsTime2()==null) ? 0 : jogo.getGolsTime2());
 	            gols_marcados += jogo.getTime1().equals(time) ? jogo.getGolsTime1() : jogo.getGolsTime2();
 	            gols_sofridos += jogo.getTime1().equals(time) ? jogo.getGolsTime2() : jogo.getGolsTime1();
 	            saldo_gols += jogo.getTime1().equals(time) ? (jogo.getGolsTime1() - jogo.getGolsTime2()) : (jogo.getGolsTime2() - jogo.getGolsTime1());
