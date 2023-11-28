@@ -3,13 +3,13 @@ package entidades;
 public class ResumoTime {
 	
 	String timeDaVez;
-	int pontuacao;
-	int vitorias;
-	int derrotas;
-	int empates;
-	int gols_marcados;
-	int gols_sofridos;
-	int saldo_gols;
+	private int pontuacao;
+	private int vitorias;
+	private int derrotas;
+	private int empates;
+	private int gols_marcados;
+	private int gols_sofridos;
+	private int saldo_gols;
 	
 	public ResumoTime(String timeDaVez, int pontuacao, int vitorias, int derrotas, int empates, int gols_marcados,
 			int gols_sofridos, int saldo_gols) {
