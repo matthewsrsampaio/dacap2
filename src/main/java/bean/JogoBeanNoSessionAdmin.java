@@ -30,7 +30,7 @@ public class JogoBeanNoSessionAdmin {
 			if(jogo.getTime1().equalsIgnoreCase(jogo.getTime2())) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. O time 1 é igual ao do time 2.", ""));
 			} else if(jogo.getTime1()!=null || jogo.getTime2()!=null) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. Time 1 ou time 2 não existem ou estão em maiúsculo.", ""));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. Os campos time 1 e time 2 não podem ficar em branco ou conter letras maiúsculas.", ""));
 			}
 		}
 		return null;
