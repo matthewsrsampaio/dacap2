@@ -25,11 +25,11 @@ public class JogoBean {
 	private boolean visivel = false;
 	
 	public void onRowEdit(RowEditEvent<Jogo> event) throws Exception {	
-		if(!(event.getObject().getTime1().equals(event.getObject().getTime2()))) {
+		if(event.getObject().getGolsTime1()!=null && event.getObject().getGolsTime2()!=null) {
 			JogoDao.editar(event.getObject());
-		    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ID: " + event.getObject().getId()+"   ->   Jogadores Editados: ", String.valueOf(event.getObject().getTime1() + " e " + event.getObject().getTime2())));
+		    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ID: " + event.getObject().getId()+"   ->   Resultado editado com sucesso: ", String.valueOf(event.getObject().getTime1() + " e " + event.getObject().getTime2())));
 		} else {			
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"ID: " + event.getObject().getId()+"   ->   Edição não salva.", ""));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"ID: " + event.getObject().getId()+"   ->   A edição não foi salva. ", "Os valores são inválidos."));
 		}
     }
 	
@@ -67,12 +67,6 @@ public class JogoBean {
 	        int pontuacao = 0;
 
 	        for (Jogo jogo : listaResumo) {
-//	        	if(jogo.getGolsTime1()==null || jogo.getGolsTime2()==null) {
-//	        		jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
-//	        		jogo.setGolsTime2(0);
-//	        	}
-	        	jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
-	        	jogo.setGolsTime2((jogo.getGolsTime2()==null) ? 0 : jogo.getGolsTime2());
 	            gols_marcados += jogo.getTime1().equals(time) ? jogo.getGolsTime1() : jogo.getGolsTime2();
 	            gols_sofridos += jogo.getTime1().equals(time) ? jogo.getGolsTime2() : jogo.getGolsTime1();
 	            saldo_gols += jogo.getTime1().equals(time) ? (jogo.getGolsTime1() - jogo.getGolsTime2()) : (jogo.getGolsTime2() - jogo.getGolsTime1());

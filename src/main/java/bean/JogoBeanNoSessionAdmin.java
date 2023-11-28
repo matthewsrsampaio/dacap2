@@ -20,7 +20,16 @@ public class JogoBeanNoSessionAdmin {
 	
 	public String salvar() throws Exception {		
 		//Se não for o mesmo time
-		if(jogo.getTime1().equals(jogo.getTime1().toLowerCase()) && jogo.getTime2().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
+//		jogo.getTime1().equals(jogo.getTime1().toLowerCase()) && jogo.getTime2().equals(jogo.getTime2().toLowerCase()) && 
+		if(!jogo.getTime1().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
+			
+			jogo.setTime1(jogo.getTime1().equals("A") ? "a" : jogo.getTime1());
+			jogo.setTime2(jogo.getTime2().equals("A") ? "a" : jogo.getTime2());
+			jogo.setTime1(jogo.getTime1().equals("B") ? "b" : jogo.getTime1());
+			jogo.setTime2(jogo.getTime2().equals("B") ? "b" : jogo.getTime2());
+			jogo.setTime1(jogo.getTime1().equals("C") ? "c" : jogo.getTime1());
+			jogo.setTime2(jogo.getTime2().equals("C") ? "c" : jogo.getTime2());
+			
 			jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
         	jogo.setGolsTime2((jogo.getGolsTime2()==null) ? 0 : jogo.getGolsTime2());
 			JogoDao.salvar(jogo);
@@ -29,7 +38,7 @@ public class JogoBeanNoSessionAdmin {
 		} else {
 			if(jogo.getTime1().equalsIgnoreCase(jogo.getTime2())) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. O time 1 é igual ao do time 2.", ""));
-			} else if(jogo.getTime1()!=null || jogo.getTime2()!=null) {
+			} else if(jogo.getTime1()==null || jogo.getTime2()==null || jogo.getTime1().isEmpty() || jogo.getTime2().isEmpty() || jogo.getTime1().isBlank() || jogo.getTime2().isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. Os campos time 1 e time 2 não podem ficar em branco ou conter letras maiúsculas.", ""));
 			}
 		}
