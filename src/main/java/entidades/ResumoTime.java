@@ -24,6 +24,7 @@ public class ResumoTime {
 		this.saldo_gols = saldo_gols;
 	}
 
+	
 	public String getTimeDaVez() {
 		return timeDaVez;
 	}

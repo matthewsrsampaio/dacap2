@@ -18,18 +18,14 @@ public class JogoBeanNoSessionAdmin {
 	private List<Jogo> listaJogos;
 	private Jogo jogo = new Jogo();
 	
-	public String salvar() throws Exception {		
-		//Se não for o mesmo time
-//		jogo.getTime1().equals(jogo.getTime1().toLowerCase()) && jogo.getTime2().equals(jogo.getTime2().toLowerCase()) && 
+	public String salvar() throws Exception {
 		if(!jogo.getTime1().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
-			
 			jogo.setTime1(jogo.getTime1().equals("A") ? "a" : jogo.getTime1());
 			jogo.setTime2(jogo.getTime2().equals("A") ? "a" : jogo.getTime2());
 			jogo.setTime1(jogo.getTime1().equals("B") ? "b" : jogo.getTime1());
 			jogo.setTime2(jogo.getTime2().equals("B") ? "b" : jogo.getTime2());
 			jogo.setTime1(jogo.getTime1().equals("C") ? "c" : jogo.getTime1());
 			jogo.setTime2(jogo.getTime2().equals("C") ? "c" : jogo.getTime2());
-			
 			jogo.setGolsTime1((jogo.getGolsTime1()==null) ? 0 : jogo.getGolsTime1());
         	jogo.setGolsTime2((jogo.getGolsTime2()==null) ? 0 : jogo.getGolsTime2());
 			JogoDao.salvar(jogo);
@@ -55,9 +51,9 @@ public class JogoBeanNoSessionAdmin {
     }
 	
 	public List<Jogo> localizar() throws Exception {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + auxiliar.getLetra().toString(), null));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + auxiliar.getLetra().toString().toLowerCase(), null));
 		this.visivel = true;
-		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(auxiliar.getLetra()) : listaJogos;
+		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(auxiliar.getLetra().toLowerCase()) : listaJogos;
 		resetInputs();
 		return listaJogos;
 	}

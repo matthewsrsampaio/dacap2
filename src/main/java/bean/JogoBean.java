@@ -58,14 +58,14 @@ public class JogoBean {
 	    
 	    for (String time : listaFixa) {
 	        List<Jogo> listaResumo = JogoDao.buscarJogosTime(time);
+	        int pontuacao = 0;
 	        int vitorias = 0;
 	        int derrotas = 0;
 	        int empates = 0;
 	        int gols_marcados = 0;
 	        int gols_sofridos = 0;
 	        int saldo_gols = 0;
-	        int pontuacao = 0;
-
+	        
 	        for (Jogo jogo : listaResumo) {
 	            gols_marcados += jogo.getTime1().equals(time) ? jogo.getGolsTime1() : jogo.getGolsTime2();
 	            gols_sofridos += jogo.getTime1().equals(time) ? jogo.getGolsTime2() : jogo.getGolsTime1();
@@ -86,6 +86,7 @@ public class JogoBean {
 	        this.visivel = true;
 	    }
 	}
+	
 	
 	public Jogo getJogo() {
 		return jogo;
