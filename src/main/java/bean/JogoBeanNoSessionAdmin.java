@@ -19,7 +19,6 @@ public class JogoBeanNoSessionAdmin {
 	private Auxiliar auxiliar = new Auxiliar();
 	private Boolean visivel = false;
 	private List<Jogo> listaJogos;
-	private List<Jogo> listaStatus = new ArrayList<>();;
 	private List<Jogo> listaTimeA = new ArrayList<>();;
 	private List<Jogo> listaTimeB = new ArrayList<>();;
 	private List<Jogo> listaTimeC = new ArrayList<>();;
@@ -27,15 +26,15 @@ public class JogoBeanNoSessionAdmin {
 	
 	public String salvar() throws Exception {		
 		//Se não for o mesmo time
-		if(!jogo.getTime1().equalsIgnoreCase(jogo.getTime2()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
+		if(jogo.getTime1().equals(jogo.getTime1().toLowerCase()) && jogo.getTime2().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().equals(jogo.getTime2().toLowerCase()) && !jogo.getTime1().isEmpty() && !jogo.getTime2().isEmpty() && jogo.getTime1()!=null && jogo.getTime2()!=null) {	
 			JogoDao.salvar(jogo);
 			resetInputs();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Jogada salvo com sucesso!", ""));
 		} else {
 			if(jogo.getTime1().equalsIgnoreCase(jogo.getTime2())) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. O time 1 é igual ao do time 2.", ""));
-			} else if(jogo.getTime1().isEmpty() || jogo.getTime2().isEmpty() || jogo.getTime1()!=null || jogo.getTime2()!=null) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. Time 1 ou time 2 não existem.", ""));
+			} else if(jogo.getTime1()!=null || jogo.getTime2()!=null) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Imposssível salvar jogo. Time 1 ou time 2 não existem ou estão em maiúsculo.", ""));
 			}
 		}
 		return null;
@@ -51,7 +50,7 @@ public class JogoBeanNoSessionAdmin {
     }
 	
 	public List<Jogo> localizar() throws Exception {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + auxiliar.getLetra().toString().toUpperCase(), null));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Time selecionado: " + auxiliar.getLetra().toString(), null));
 		this.visivel = true;
 		listaJogos = (listaJogos==null) ? JogoDao.buscarJogosTime(auxiliar.getLetra()) : listaJogos;
 		resetInputs();

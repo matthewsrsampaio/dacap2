@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 	@NamedQuery(name= "listarJogos", query = "select j from Jogo j"),
-	@NamedQuery(name = "listarResumo", query = "select j from Jogo j where j.time1 = :time or j.time2 = :time")	
+	@NamedQuery(name = "listarResumo", query = "select j from Jogo j where j.time1 like :time or j.time2 like :time")	
 })
 
 @Entity
